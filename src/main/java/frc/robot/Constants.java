@@ -30,10 +30,12 @@ public class Constants {
          public static final int I2 = 0;
          public static final int D2 = 6;
          //
-         public static final int PosHigh = 180;
-         public static final int PosMedium = 90;
-         public static final int PosLow = 0;
-         public static final double Buffer = .1f;
+         public static final int PosReef4 = 180;
+         public static final int PosReef123 = 270;
+         public static final int PosStored = 30;
+         public static final int PosStationPickup = 90;
+         public static final int PosSeaBedPickup = 0;
+         
          
    }
 }
