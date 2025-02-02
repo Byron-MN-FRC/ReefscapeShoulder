@@ -54,7 +54,7 @@ public class Shoulder extends SubsystemBase {
     private DigitalInput shoulderFrontSwitch;
     private DigitalInput shoulderBackSwitch;
     private final MotionMagicVoltage m_motionMagicReq = new MotionMagicVoltage(0).withSlot(0);
-
+    private double shoulderGoalPos = 0;
     /**
     *
     */
@@ -136,23 +136,28 @@ public class Shoulder extends SubsystemBase {
 
     public void ShoulderStored() {
         shoulderMotor.setControl(m_motionMagicReq.withPosition(Constants.Shoulder.PosStored));
+        shoulderGoalPos = Constants.Shoulder.PosStored;
     }
 
     public void ShoulderStationPickup() {
         shoulderMotor.setControl(m_motionMagicReq.withPosition(Constants.Shoulder.PosStationPickup));
+        shoulderGoalPos = Constants.Shoulder.PosStationPickup;
     }
 
     public void ShoulderSeaBedPickup() {
         shoulderMotor.setControl(m_motionMagicReq.withPosition(Constants.Shoulder.PosSeaBedPickup));
         // shoulderTarget = "Seabed";
+        shoulderGoalPos = Constants.Shoulder.PosSeaBedPickup;
     }
 
     public void ShoulderReef123() {
         shoulderMotor.setControl(m_motionMagicReq.withPosition(Constants.Shoulder.PosReef123));
+        shoulderGoalPos = Constants.Shoulder.PosReef123;
     }
 
     public void ShoulderReef4() {
         shoulderMotor.setControl(m_motionMagicReq.withPosition(Constants.Shoulder.PosReef4));
+        shoulderGoalPos = Constants.Shoulder.PosReef4;
     }
 
     public boolean isShoulderFrontTrip() {
@@ -163,4 +168,7 @@ public class Shoulder extends SubsystemBase {
         return shoulderBackSwitch.get();
     }
 
+    public boolean isShoulderAtGoalPos() {
+        return Math.abs(shoulderMotor.getPosition().getValueAsDouble() - shoulderGoalPos) < 1/(365*2); //half a degree
+    }
 }

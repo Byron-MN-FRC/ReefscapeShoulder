@@ -59,12 +59,13 @@ public class RunShoulderReef123 extends Command {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        System.out.println("Run Shoulder Reef 1 2 3 is done");
     }
 
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        return false;
+        return m_shoulder.isShoulderAtGoalPos();
     }
 
     @Override
